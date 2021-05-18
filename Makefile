@@ -1,20 +1,32 @@
-
-POSTGRES_USER = postgres
-PROJECT_USER = goexampleapiuser
-PROJECT_DATABASE = filestore
+PG_HOST ?= localhost
+PG_NAME ?= filestore
+PG_USER ?= postgres
+PG_PASS ?=
 SCRIPTS = ./scripts
 
 init:
 	for file in $(SCRIPTS)/init/* ; do \
-		psql -U $(POSTGRES_USER) -a -f $${file} ; \
+		if test "$(PG_HOST)" = "localhost"; then \
+			PGPASSWORD=$(PG_PASS) psql -U $(PG_USER) -a -f $${file} ; \
+		else \
+			PGPASSWORD=$(PG_PASS) psql -U $(PG_USER) -h $(PG_HOST) -a -f $${file} ; \
+		fi; \
 	done	
 
 schema:
 	for file in $(SCRIPTS)/schema/* ; do \
-		psql -U $(POSTGRES_USER) -d $(PROJECT_DATABASE) -a -q -f $${file} ; \
+		if test "$(PG_HOST)" = "localhost"; then \
+			PGPASSWORD=$(PG_PASS) psql -U $(PG_USER) -d $(PG_NAME) -a -f $${file} ; \
+		else \
+			PGPASSWORD=$(PG_PASS) psql -U $(PG_USER) -h $(PG_HOST) -d $(PG_NAME) -a -f $${file} ; \
+		fi; \
 	done	
 
 reset:
 	for file in $(SCRIPTS)/reset/* ; do \
-		psql -U $(POSTGRES_USER) -a -f $${file} ; \
+		if test "$(PG_HOST)" = "localhost"; then \
+			PGPASSWORD=$(PG_PASS) psql -U $(PG_USER) -a -f $${file} ; \
+		else \
+			PGPASSWORD=$(PG_PASS) psql -U $(PG_USER) -h $(PG_HOST) -a -f $${file} ; \
+		fi; \
 	done	
