@@ -1,4 +1,4 @@
-CREATE USER goExampleAPIAdmin WITH PASSWORD 'wevik4%#$gj,,_jas]&&deB3';
+CREATE USER goExampleAPIAdmin WITH PASSWORD 'adminFoo';
 GRANT ALL PRIVILEGES ON DATABASE filestore TO goExampleAPIAdmin;
 
 
