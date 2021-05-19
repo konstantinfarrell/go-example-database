@@ -27,6 +27,6 @@ reset:
 		if test "$(PG_HOST)" = "localhost"; then \
 			PGPASSWORD=$(PG_PASS) psql -U $(PG_USER) -a -f $${file} ; \
 		else \
-			PGPASSWORD=$(PG_PASS) psql -U $(PG_USER) -h $(PG_HOST) -a -f $${file} ; \
+			PGPASSWORD=$(PG_PASS) psql -U $(PG_USER) -h $(PG_HOST) -d postgres -a -f $${file} ; \
 		fi; \
 	done	
