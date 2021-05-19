@@ -33,8 +33,8 @@ CREATE OR REPLACE PROCEDURE delete_file(
 LANGUAGE plpgsql
 AS $$
 BEGIN
-    DELETE FROM files fs
-    WHERE fs.fileId = fId;
+    DELETE FROM files
+    WHERE fileId = fId;
     COMMIT;
 END
 $$;
