@@ -28,13 +28,13 @@ $$;
 GRANT EXECUTE ON PROCEDURE create_file(UUID, TEXT, TEXT, TEXT, TIMESTAMP, TIMESTAMP, BYTEA, TIMESTAMP) TO goExampleAPIUser;
 
 CREATE OR REPLACE PROCEDURE delete_file(
-    fileId UUID
+    fId UUID
 )
 LANGUAGE plpgsql
 AS $$
 BEGIN
     DELETE FROM files fs
-    WHERE fs.fileId = fileId;
+    WHERE fs.fileId = fId;
     COMMIT;
 END
 $$;
