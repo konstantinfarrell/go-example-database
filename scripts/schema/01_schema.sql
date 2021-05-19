@@ -9,4 +9,4 @@ CREATE TABLE files(
     received TIMESTAMP
 );
 
-GRANT SELECT,INSERT ON files TO goexampleapiuser;
+GRANT SELECT,INSERT,UPDATE,DELETE ON files TO goexampleapiuser;
